@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xNKm55lfIIZVr9uO+Td49mC3KRcFbR0EAm6U6kQgYFIszhx7Vyu7N6qFHQEsuLHE6mCJ/4xVRy4kRoiGE8N1aw==",
+  "success": true,
+  "projectFilePath": "D:\\development\\personal\\jobsity\\Chatroom\\Chatroom\\Chatroom.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.aspnet.signalr\\2.4.3\\microsoft.aspnet.signalr.2.4.3.nupkg.sha512"
+  ],
+  "logs": []
+}

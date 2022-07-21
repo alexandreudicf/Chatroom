@@ -1,0 +1,12 @@
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\bin\Debug\net6.0\Chatroom.Service.deps.json
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\bin\Debug\net6.0\Chatroom.Service.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\bin\Debug\net6.0\ref\Chatroom.Service.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\bin\Debug\net6.0\Chatroom.Service.pdb
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\Chatroom.Service.csproj.AssemblyReference.cache
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\Chatroom.Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\Chatroom.Service.AssemblyInfoInputs.cache
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\Chatroom.Service.AssemblyInfo.cs
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\Chatroom.Service.csproj.CoreCompileInputs.cache
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\Chatroom.Service.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\ref\Chatroom.Service.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Service\obj\Debug\net6.0\Chatroom.Service.pdb

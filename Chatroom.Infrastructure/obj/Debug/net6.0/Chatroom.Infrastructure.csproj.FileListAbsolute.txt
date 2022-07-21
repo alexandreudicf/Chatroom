@@ -1,0 +1,11 @@
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\bin\Debug\net6.0\Chatroom.Infrastructure.deps.json
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\bin\Debug\net6.0\Chatroom.Infrastructure.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\bin\Debug\net6.0\ref\Chatroom.Infrastructure.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\bin\Debug\net6.0\Chatroom.Infrastructure.pdb
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\obj\Debug\net6.0\Chatroom.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\obj\Debug\net6.0\Chatroom.Infrastructure.AssemblyInfoInputs.cache
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\obj\Debug\net6.0\Chatroom.Infrastructure.AssemblyInfo.cs
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\obj\Debug\net6.0\Chatroom.Infrastructure.csproj.CoreCompileInputs.cache
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\obj\Debug\net6.0\Chatroom.Infrastructure.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\obj\Debug\net6.0\ref\Chatroom.Infrastructure.dll
+D:\development\personal\jobsity\Chatroom\Chatroom.Infrastructure\obj\Debug\net6.0\Chatroom.Infrastructure.pdb
