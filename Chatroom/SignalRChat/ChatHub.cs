@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using Chatroom.Service.Services.RabbitMQ;
+using Chatroom.Service.Services.RabbitMQ.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using RabbitMQ.Client;
 
@@ -21,7 +21,7 @@ namespace Chatroom.SignalRChat
                 mqService.Publish(message.Split("=")[1]);
             } else
             {
-                await Clients.All.SendAsync("ReceiveMessage", user, message);
+                await Clients.All.SendAsync("ReceiveMessage", DateTime.Now, user, message);
             }
         }
     }

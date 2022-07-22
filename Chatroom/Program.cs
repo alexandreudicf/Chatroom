@@ -1,12 +1,22 @@
+using Chatroom.Domain.Settings;
 using Chatroom.Service.Extensions;
 using Chatroom.SignalRChat;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Binding values from appsettings.
+builder.Services.Configure<AppSettings>(options => builder.Configuration?.GetSection("AppSettings").Bind(options));
+
 builder.Services.AddControllersWithViews();
+
+// Enable SignalR using websocket communication.
 builder.Services.AddSignalR();
-builder.Services.AddServices(); // TODO
+// Inject services for Chatroom.Service dependency lib.
+builder.Services.AddServices(builder.Configuration);
+
+// Service responsible to handle commands and publish it to chatroom.
 builder.Services.AddSingleton<MessageBot>();
 
 var app = builder.Build();

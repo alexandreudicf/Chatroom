@@ -1,24 +1,21 @@
 ﻿
+using Chatroom.Domain.Models;
 using Chatroom.Infrastructure;
-using CsvHelper;
-using CsvHelper.Configuration;
-using Microsoft.AspNetCore.SignalR;
+using Chatroom.Service.Services.RabbitMQ.Interfaces;
 using RabbitMQ.Client.Events;
-using System.Globalization;
-using System.Net.Http.Headers;
 using System.Text;
 
 namespace Chatroom.Service.Services.RabbitMQ
 {
     public class MessageQueueService : IMessageQueue
     {
-        private readonly HttpClient _client;
+        private readonly IStockCatalogService stockCatalogService;
         private readonly IMessageBroker _messageQueue;
 
-        public MessageQueueService(IMessageBroker messageQueue, HttpClient client)
+        public MessageQueueService(IMessageBroker messageQueue, IStockCatalogService stockCatalogService)
         {
             _messageQueue = messageQueue;
-            _client = client;
+            this.stockCatalogService = stockCatalogService;
         }
 
         public void Publish(string stockCode)
@@ -32,38 +29,19 @@ namespace Chatroom.Service.Services.RabbitMQ
             {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                await this.ParseCSVFileAsync(message);
-                success?.Invoke("Success");
+                var data = await GetPriceMessageAsync(message);
+                success?.Invoke(data);
             });
         }
 
-        public async Task ParseCSVFileAsync(string stockCode)
+        private async Task<string> GetPriceMessageAsync(string stockCode)
         {
-            var url = $"https://stooq.com/q/l/?s=${stockCode}&f=sd2t2ohlcv&h&e=csv";
+            var path = $"?s={stockCode}&f=sd2t2ohlcv&h&e=json";
+            var prices = await stockCatalogService.GetStockByAPIAsync<Prices>(path);
 
-            using (var msg = new HttpRequestMessage(HttpMethod.Get, new Uri(url)))
-            {
-                msg.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/csv"));
-                using (var resp = await _client.SendAsync(msg))
-                {
-                    resp.EnsureSuccessStatusCode();
+            var price = prices.Symbols.FirstOrDefault();
 
-                    var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-                    {
-                        NewLine = Environment.NewLine,
-                        DetectDelimiter = true
-                    };
-
-                    using (var s = await resp.Content.ReadAsStreamAsync())
-                    using (var sr = new StreamReader(s))
-                    using (var futureoptionsreader = new CsvReader(sr, config))
-                    {
-                        //futureoptionsreader.Configuration.RegisterClassMap<MappingNSEIndexes>();
-                        //var list = futureoptionsreader.GetRecords<RawNSEIndexes>();
-                        //var number = list.Count();
-                    }
-                }
-            }
+            return $"{price?.Symbol} quote is ${price?.High} per share";
         }
     }
 }
