@@ -1,15 +1,28 @@
-﻿using System;
-using System.Web;
+﻿using System.Text;
+using Chatroom.Service.Services.RabbitMQ;
 using Microsoft.AspNetCore.SignalR;
+using RabbitMQ.Client;
 
 namespace Chatroom.SignalRChat
 {
     public class ChatHub : Hub
     {
-        public void Send(string name, string message)
+        private IMessageQueue mqService;
+
+        public ChatHub(IMessageQueue mqService)
         {
-            // Call the addNewMessageToPage method to update clients.
-            //Clients.All.addNewMessageToPage(name, message);
+            this.mqService = mqService;
+        }
+
+        public async Task SendMessage(string user, string message)
+        {
+            if (message.StartsWith("/stock="))
+            {
+                mqService.Publish(message.Split("=")[1]);
+            } else
+            {
+                await Clients.All.SendAsync("ReceiveMessage", user, message);
+            }
         }
     }
 }

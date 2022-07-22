@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "858206fb-ecfa-4526-8e9f-c2de593b27b7": {
+      "ProjectGuid": "858206fb-ecfa-4526-8e9f-c2de593b27b7",
+      "DisplayName": "Chatroom",
+      "ColorIndex": 0
+    },
+    "27b87a98-e603-44ad-8b09-e28a91bfaf62": {
+      "ProjectGuid": "27b87a98-e603-44ad-8b09-e28a91bfaf62",
+      "DisplayName": "Chatroom.Domain",
+      "ColorIndex": 1
+    },
+    "58df0cb3-1446-4a16-b1e3-08337d14c0a8": {
+      "ProjectGuid": "58df0cb3-1446-4a16-b1e3-08337d14c0a8",
+      "DisplayName": "Chatroom.Infrastructure",
+      "ColorIndex": 2
+    },
+    "4f9b168f-71bb-4190-ab0b-54e3a335640d": {
+      "ProjectGuid": "4f9b168f-71bb-4190-ab0b-54e3a335640d",
+      "DisplayName": "Chatroom.Service",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}

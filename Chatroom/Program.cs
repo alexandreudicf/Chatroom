@@ -1,7 +1,13 @@
+using Chatroom.Service.Extensions;
+using Chatroom.SignalRChat;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
+builder.Services.AddServices(); // TODO
+builder.Services.AddSingleton<MessageBot>();
 
 var app = builder.Build();
 
@@ -23,5 +29,15 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapHub<ChatHub>("/chatHub");
+app.Lifetime.ApplicationStarted.Register(() => RegisterSignalRWithRabbitMQ(app.Services));
 
 app.Run();
+
+
+void RegisterSignalRWithRabbitMQ(IServiceProvider serviceProvider)
+{
+    // Connect to RabbitMQ
+    var rabbitMQService = (MessageBot)serviceProvider.GetRequiredService(typeof(MessageBot));
+    rabbitMQService.Connect();
+}

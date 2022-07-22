@@ -13,11 +13,6 @@ namespace Chatroom.Controllers
             _logger = logger;
         }
 
-        public ActionResult Chat()
-        {
-            return View();
-        }
-
         public IActionResult Index()
         {
             return View();
