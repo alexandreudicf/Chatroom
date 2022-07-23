@@ -6,3 +6,9 @@ Chatroom.Infrastructure/obj
 Chatroom.Infrastructure/bin
 Chatroom.Domain/obj
 Chatroom.Domain/bin
+Chatroom.Domain.Tests/bin
+Chatroom.Domain.Tests/obj
+Chatroom.Infrastructure.Tests/bin
+Chatroom.Infrastructure.Tests/obj
+*/bin
+*/obj

@@ -24,7 +24,7 @@ namespace Chatroom.SignalRChat
             {
                 var chatMessage = new ChatMessage
                 {
-                    User = "Bot",
+                    User = ChatMessage.BotName,
                     Message = message,
                     CreateDate = DateTime.Now,
                 };
