@@ -1,10 +1,10 @@
-﻿using Chatroom.Service.Services.RabbitMQ.Interfaces;
+﻿using Chatroom.Service.Services.Interfaces;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System.Globalization;
 using System.Net.Http.Json;
 
-namespace Chatroom.Service.Services.RabbitMQ
+namespace Chatroom.Service.Services
 {
     public class StockCatalogService : IStockCatalogService
     {

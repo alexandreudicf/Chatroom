@@ -44,8 +44,7 @@ app.Lifetime.ApplicationStarted.Register(() => RegisterSignalRWithRabbitMQ(app.S
 
 app.Run();
 
-
-void RegisterSignalRWithRabbitMQ(IServiceProvider serviceProvider)
+static void RegisterSignalRWithRabbitMQ(IServiceProvider serviceProvider)
 {
     // Connect to RabbitMQ
     var rabbitMQService = (MessageBot)serviceProvider.GetRequiredService(typeof(MessageBot));

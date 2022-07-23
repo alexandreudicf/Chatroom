@@ -1,11 +1,10 @@
-﻿
-using Chatroom.Domain.Models;
+﻿using Chatroom.Domain.Models;
 using Chatroom.Infrastructure;
-using Chatroom.Service.Services.RabbitMQ.Interfaces;
+using Chatroom.Service.Services.Interfaces;
 using RabbitMQ.Client.Events;
 using System.Text;
 
-namespace Chatroom.Service.Services.RabbitMQ
+namespace Chatroom.Service.Services
 {
     public class MessageQueueService : IMessageQueue
     {

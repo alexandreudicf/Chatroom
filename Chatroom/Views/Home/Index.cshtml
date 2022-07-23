@@ -1,4 +1,7 @@
-﻿@page
+﻿@using System.Globalization
+@model IEnumerable<Chatroom.Domain.Models.ChatMessage>;
+
+
     <div class="container">
         <div class="row">&nbsp;</div>
         <div class="row">
@@ -23,8 +26,13 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <ul id="messagesList"></ul>
+            <ul id="messagesList">
+				@foreach(var chatMessage in Model){
+					<li>@chatMessage.CreateDate.ToString("G", new CultureInfo("en-US")) -> @chatMessage.User says @chatMessage.Message</li>
+				}
+            </ul>
         </div>
     </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+<script src="~/js/chat.js">
+</script>

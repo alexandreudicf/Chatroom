@@ -1,4 +1,6 @@
 ﻿using Chatroom.Domain.Models;
+using Chatroom.Domain.Settings;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
@@ -11,7 +13,8 @@ namespace Chatroom.Infrastructure
 {
     public class MessageBroker : IMessageBroker
     {
-        private readonly string QueueName = "TestQueue";
+        private readonly AppSettings? appSettings;
+        private readonly string QueueName;
 
         protected readonly ConnectionFactory _factory;
         protected readonly IConnection _connection;
@@ -19,10 +22,12 @@ namespace Chatroom.Infrastructure
 
         protected readonly IServiceProvider _serviceProvider;
 
-        public MessageBroker(IServiceProvider serviceProvider)
+        public MessageBroker(IServiceProvider serviceProvider, IOptions<AppSettings> options)
         {
-            // Opens the connections to RabbitMQ
-            _factory = new ConnectionFactory() { HostName = "localhost" };
+            appSettings = options?.Value;
+            QueueName = appSettings?.QueueName ?? "QueueName";
+            // Open the connection to RabbitMQ, if it can't find on appsettings set localhost as default.
+            _factory = new ConnectionFactory() { HostName = appSettings?.RabbitMQHostName ?? "localhost" };
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
 

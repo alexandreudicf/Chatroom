@@ -1,4 +1,5 @@
-﻿using Chatroom.Service.Services.RabbitMQ.Interfaces;
+﻿using Chatroom.Domain.Models;
+using Chatroom.Service.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Chatroom.SignalRChat
@@ -21,8 +22,16 @@ namespace Chatroom.SignalRChat
         {
             mqService.Connect(async (string message) =>
             {
+
+                var chatMessage = new ChatMessage
+                {
+                    User = "Bot",
+                    Message = message,
+                    CreateDate = DateTime.Now,
+                };
+
                 // Send message to all users in SignalR
-                await chatHub.Clients.All.SendAsync("ReceiveMessage", DateTime.Now, "Bot", message);
+                await chatHub.Clients.All.SendAsync("ReceiveMessage", chatMessage);
             });
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Chatroom.Service.Services.RabbitMQ.Interfaces
+﻿namespace Chatroom.Service.Services.Interfaces
 {
     public interface IMessageQueue
     {
