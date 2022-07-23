@@ -28,7 +28,15 @@ namespace Chatroom.Service.Services
             {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                var data = await GetPriceMessageAsync(message);
+                var data = string.Empty;
+                try
+                {
+                    data = await GetPriceMessageAsync(message);
+
+                } catch (Exception)
+                {
+                    data = $"Can't be found price for {message} code";
+                }
                 success?.Invoke(data);
             });
         }
