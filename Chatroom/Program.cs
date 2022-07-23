@@ -1,8 +1,21 @@
 using Chatroom.Domain.Settings;
 using Chatroom.Service.Extensions;
 using Chatroom.SignalRChat;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Chatroom.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ChatroomContextConnection") ?? throw new InvalidOperationException("Connection string 'ChatroomContextConnection' not found.");
+
+builder.Services.AddDbContext<ChatroomContext>(options =>
+{
+    options.UseSqlite(connectionString);
+    options.EnableSensitiveDataLogging(true);
+});
+
+builder.Services.AddDefaultIdentity<ChatroomUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ChatroomContext>();
 
 // Add services to the container.
 
@@ -33,12 +46,14 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 app.MapHub<ChatHub>("/chatHub");
 app.Lifetime.ApplicationStarted.Register(() => RegisterSignalRWithRabbitMQ(app.Services));
 

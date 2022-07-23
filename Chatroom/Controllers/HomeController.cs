@@ -1,10 +1,12 @@
 ﻿using Chatroom.Models;
 using Chatroom.Service.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Chatroom.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IMemoryCache _messages;
