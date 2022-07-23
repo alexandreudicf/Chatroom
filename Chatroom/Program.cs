@@ -1,9 +1,8 @@
+using Chatroom.Areas.Identity.Data;
 using Chatroom.Domain.Settings;
 using Chatroom.Service.Extensions;
 using Chatroom.SignalRChat;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Chatroom.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ChatroomContextConnection") ?? throw new InvalidOperationException("Connection string 'ChatroomContextConnection' not found.");
@@ -46,7 +45,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
+app.UseAuthentication(); ;
 
 app.UseAuthorization();
 

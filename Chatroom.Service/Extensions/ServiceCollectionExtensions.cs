@@ -16,7 +16,8 @@ namespace Chatroom.Service.Extensions
             string sharePriceUri = config.GetSection("AppSettings")["SharePriceUri"];
 
             // Configure HttpClientFactory.
-            services.AddHttpClient<IStockCatalogService, StockCatalogService>().ConfigureHttpClient(client => {
+            services.AddHttpClient<IStockCatalogService, StockCatalogService>().ConfigureHttpClient(client =>
+            {
                 client.BaseAddress = new Uri(sharePriceUri);
             });
 

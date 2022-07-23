@@ -22,7 +22,6 @@ namespace Chatroom.SignalRChat
         {
             mqService.Connect(async (string message) =>
             {
-
                 var chatMessage = new ChatMessage
                 {
                     User = "Bot",

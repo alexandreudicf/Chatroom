@@ -33,7 +33,8 @@ namespace Chatroom.Service.Services
                 {
                     data = await GetPriceMessageAsync(message);
 
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     data = $"Can't be found price for {message} code";
                 }
