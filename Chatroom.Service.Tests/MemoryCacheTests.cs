@@ -44,7 +44,7 @@ namespace Chatroom.Service.Tests
             IOptions<AppSettings> options = Options.Create(new AppSettings { MaxMessagesDisplayed = 50 });
             var cache = new MemoryCache(options);
             cache.Add(new ChatMessage());
-            var messages =  cache.GetMessagesOrderedByDate();
+            var messages = cache.GetMessagesOrderedByDate();
             Assert.AreEqual(messages.Count, 1);
         }
 

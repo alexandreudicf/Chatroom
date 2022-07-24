@@ -40,7 +40,8 @@ namespace Chatroom.SignalRChat
                 if (string.IsNullOrEmpty(stockCode))
                 {
                     await InvalidCommandAsync("Please provide a valid stock code.");
-                } else
+                }
+                else
                 {
                     // Get stock code and publish it to RabbitMQ. 
                     mqService.Publish(message.Split("=")[1]);

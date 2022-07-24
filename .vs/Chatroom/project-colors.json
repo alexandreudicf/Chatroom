@@ -30,7 +30,27 @@
       "ProjectGuid": "2ae5920f-3e0b-4dfa-8277-c86feac409cd",
       "DisplayName": "Chatroom.Tests",
       "ColorIndex": 4
+    },
+    "c0d11e3d-3512-4616-a08f-45b17666d420": {
+      "ProjectGuid": "c0d11e3d-3512-4616-a08f-45b17666d420",
+      "DisplayName": "Chatroom.Service.Tests",
+      "ColorIndex": 5
+    },
+    "0b2e8513-4343-4b03-9122-9c426113bc44": {
+      "ProjectGuid": "0b2e8513-4343-4b03-9122-9c426113bc44",
+      "DisplayName": "Chatroom.Infrastructure.Tests",
+      "ColorIndex": 6
+    },
+    "e337f91f-9f65-4665-88bf-5c5a66551995": {
+      "ProjectGuid": "e337f91f-9f65-4665-88bf-5c5a66551995",
+      "DisplayName": "Chatroom.Domain.Tests",
+      "ColorIndex": 7
+    },
+    "95ccdc08-b56f-414f-b14b-98cf55bcc56c": {
+      "ProjectGuid": "95ccdc08-b56f-414f-b14b-98cf55bcc56c",
+      "DisplayName": "Chatroom.Tests",
+      "ColorIndex": 8
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 9
 }
