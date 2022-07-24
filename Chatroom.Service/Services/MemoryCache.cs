@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 namespace Chatroom.Service.Services
 {
     /// <summary>
-    /// This service is created to provide data stored in the memory.
+    /// This service provides data stored in the memory.
     /// TODO: Create a better way to store and get it. Redis service is a suggestion.
     /// </summary>
     public class MemoryCache : IMemoryCache
@@ -26,6 +26,9 @@ namespace Chatroom.Service.Services
         /// <param name="message"></param>
         public void Add(ChatMessage message)
         {
+            if (message == null)
+                throw new ArgumentNullException(nameof(message));
+
             int limit = this.settings?.MaxMessagesDisplayed ?? 50;
             if (Messages.Count >= limit)
                 Messages.Dequeue();

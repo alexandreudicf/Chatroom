@@ -6,6 +6,9 @@ using System.Diagnostics;
 
 namespace Chatroom.Controllers
 {
+    /// <summary>
+    /// Home Page.
+    /// </summary>
     [Authorize]
     public class HomeController : Controller
     {
@@ -18,11 +21,19 @@ namespace Chatroom.Controllers
             _messages = messages;
         }
 
+        /// <summary>
+        /// Default page to be showed. Get lastest messages stored in the memory.
+        /// </summary>
+        /// <returns>Returns <see cref="IActionResult"/>.</returns>
         public IActionResult Index()
         {
             return View(_messages.GetMessagesOrderedByDate());
         }
 
+        /// <summary>
+        /// Shows Privacy page.
+        /// </summary>
+        /// <returns>Returns <see cref="IActionResult"/>.</returns>
         public IActionResult Privacy()
         {
             return View();

@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chatroom.Domain.Tests
+namespace Chatroom.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ChatHubTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestChatHub()
         {
         }
     }

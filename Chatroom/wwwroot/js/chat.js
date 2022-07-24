@@ -14,7 +14,7 @@ connection.on("ReceiveMessage", function (chatMessage) {
     // is not interpreted as markup. If you're assigning in any other way, you 
     // should be aware of possible script injection concerns.
     li.textContent = `${new Date(chatMessage.createDate).toLocaleString("en-US")} ->  ${chatMessage.user} says ${chatMessage.message}`;
-    if (count >= 2) {
+    if (count >= 50) {
         messagesList.removeChild(messagesList.firstChild);
     }
 });

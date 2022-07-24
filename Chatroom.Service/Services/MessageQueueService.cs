@@ -17,11 +17,22 @@ namespace Chatroom.Service.Services
             this.stockCatalogService = stockCatalogService;
         }
 
+        /// <summary>
+        /// Send to queue a intent to get price for a specfic stock code.
+        /// </summary>
+        /// <param name="stockCode"></param>
         public void Publish(string stockCode)
         {
+            if (stockCode == null)
+                throw new ArgumentNullException(nameof(stockCode));
+
             _messageQueue.Publish(stockCode);
         }
 
+        /// <summary>
+        /// Connect and listen events to get payload from API.
+        /// </summary>
+        /// <param name="success"></param>
         public void Connect(Action<string> success)
         {
             _messageQueue.Connect(async delegate (object? model, BasicDeliverEventArgs ea)
@@ -32,18 +43,25 @@ namespace Chatroom.Service.Services
                 try
                 {
                     data = await GetPriceMessageAsync(message);
-
                 }
                 catch (Exception)
                 {
-                    data = $"Can't be found price for {message} code";
+                    data = $"Share price Can't be found for {message} code";
                 }
                 success?.Invoke(data);
             });
         }
 
+        /// <summary>
+        /// Call API to get stock price.
+        /// </summary>
+        /// <param name="stockCode">Code required to get stock price.</param>
+        /// <returns></returns>
         private async Task<string> GetPriceMessageAsync(string stockCode)
         {
+            if (stockCode == null)
+                throw new ArgumentNullException(nameof(stockCode));
+
             var path = $"?s={stockCode}&f=sd2t2ohlcv&h&e=json";
             var prices = await stockCatalogService.GetStockByAPIAsync<Prices>(path);
 

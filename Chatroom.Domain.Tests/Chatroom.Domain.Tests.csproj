@@ -14,4 +14,8 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Chatroom.Domain\Chatroom.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

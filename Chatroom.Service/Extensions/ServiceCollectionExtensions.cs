@@ -8,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Chatroom.Service.Extensions
 {
+    /// <summary>
+    /// Extension to instantiate required for this package.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
         public static void AddServices(this IServiceCollection services, IConfiguration config)

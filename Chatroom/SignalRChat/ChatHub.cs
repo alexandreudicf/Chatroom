@@ -22,15 +22,29 @@ namespace Chatroom.SignalRChat
             _httpContextAccessor = httpContextAccessor;
         }
 
+        /// <summary>
+        /// Publish messages to signalR.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public async Task SendMessage(string message)
         {
+            // Get logged user from session.
             var context = _httpContextAccessor.HttpContext?.User;
             var chatroomUser = await _signInManager.GetUserAsync(context);
 
-
+            // Verify is valid command.
             if (message.StartsWith("/stock="))
             {
-                mqService.Publish(message.Split("=")[1]);
+                string stockCode = message.Split("=")[1];
+                if (string.IsNullOrEmpty(stockCode))
+                {
+                    await InvalidCommandAsync("Please provide a valid stock code.");
+                } else
+                {
+                    // Get stock code and publish it to RabbitMQ. 
+                    mqService.Publish(message.Split("=")[1]);
+                }
             }
             else
             {
@@ -44,6 +58,17 @@ namespace Chatroom.SignalRChat
                 cache.Add(chatMessage);
                 await Clients.All.SendAsync("ReceiveMessage", chatMessage);
             }
+        }
+
+        public async Task InvalidCommandAsync(string warningMessage)
+        {
+            var chatMessage = new ChatMessage
+            {
+                User = ChatMessage.BotName,
+                Message = warningMessage,
+                CreateDate = DateTime.Now,
+            };
+            await Clients.All.SendAsync("ReceiveMessage", chatMessage);
         }
     }
 }

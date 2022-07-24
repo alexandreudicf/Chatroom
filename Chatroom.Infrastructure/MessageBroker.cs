@@ -15,9 +15,7 @@ namespace Chatroom.Infrastructure
         protected readonly IConnection _connection;
         protected readonly IModel _channel;
 
-        protected readonly IServiceProvider _serviceProvider;
-
-        public MessageBroker(IServiceProvider serviceProvider, IOptions<AppSettings> options)
+        public MessageBroker(IOptions<AppSettings> options)
         {
             appSettings = options?.Value;
             QueueName = appSettings?.QueueName ?? "QueueName";
@@ -25,23 +23,31 @@ namespace Chatroom.Infrastructure
             _factory = new ConnectionFactory() { HostName = appSettings?.RabbitMQHostName ?? "localhost" };
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
-
-            _serviceProvider = serviceProvider;
         }
 
+        /// <summary>
+        /// Publish a new message to be processed.
+        /// </summary>
+        /// <param name="message"></param>
         public void Publish(string message)
         {
             _channel.QueueDeclare(queue: this.QueueName, durable: true, exclusive: false, autoDelete: false,
                                  arguments: null);
 
+            // Convert byte to string.
             var body = Encoding.UTF8.GetBytes(message);
 
+            // Publish it with a simple way. Needs to be changed if we want to manage messages from each channel.
             _channel.BasicPublish(exchange: "",
                                  routingKey: this.QueueName,
                                  basicProperties: null,
                                  body: body);
         }
 
+        /// <summary>
+        /// Begin listening new messages from queue.
+        /// </summary>
+        /// <param name="received"></param>
         public void Connect(EventHandler<BasicDeliverEventArgs> received)
         {
             // Declare a RabbitMQ Queue

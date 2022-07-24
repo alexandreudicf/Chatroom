@@ -12,6 +12,12 @@ namespace Chatroom.Service.Services
             _client = client;
         }
 
+        /// <summary>
+        /// Call API(Base Address coming from appsetting) with a specific path param.
+        /// </summary>
+        /// <typeparam name="T">Generic Type to parse.</typeparam>
+        /// <param name="API">Path param</param>
+        /// <returns>Returns a Task of determined type.</returns>
         public async Task<T> GetStockByAPIAsync<T>(string API)
         {
             var resp = await _client.GetFromJsonAsync<T>(API);
