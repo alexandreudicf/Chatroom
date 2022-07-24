@@ -29,11 +29,35 @@ messages.
 	* https://www.erlang.org/downloads
 	* https://www.rabbitmq.com/download.html
 
-* There is no need additional changes on appsettings.Development.json file, however if you already setup rabbitMQ with username and password, you'll need to change **RabbitMQHostName** value.
+* There is no need additional changes on **appsettings.Development.json** file, however if you already setup rabbitMQ with username and password, you need to change **RabbitMQHostName** value.
 * Run ASP.NET Web Application in Visual Studio as usual.
 * make sure you have **nuget.config** in root folder.
 
+### Run the app
 
+Select Ctrl+F5 to run the app without the debugger.
+
+Visual Studio displays the following dialog when a project is not yet configured to use SSL:
+![alt text](https://docs.microsoft.com/en-us/aspnet/core/getting-started/_static/trustcert.png?view=aspnetcore-6.0)
+
+
+This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?
+
+Select Yes if you trust the IIS Express SSL certificate.
+
+The following dialog is displayed:
+
+![alt text](https://docs.microsoft.com/en-us/aspnet/core/getting-started/_static/cert.png?view=aspnetcore-6.0)
+
+Security warning dialog
+
+Select Yes if you agree to trust the development certificate.
+
+For information on trusting the Firefox browser, see Firefox SEC_ERROR_INADEQUATE_KEY_USAGE certificate error.
+
+Visual Studio runs the app and opens the default browser.
+
+The address bar shows localhost:port# and not something like example.com. The standard hostname for your local computer is localhost. When Visual Studio creates a web project, a random port is used for the web server.
 
 ### Useful links
 * https://github.com/SignalR/SignalR
